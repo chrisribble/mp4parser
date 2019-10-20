@@ -182,7 +182,11 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
     }
 
     public void setDefaultSampleDuration(long defaultSampleDuration) {
-        setFlags(getFlags() | 0x8); // activate the field
+        if (defaultSampleDuration == -1) {
+            setFlags(getFlags() & (Integer.MAX_VALUE ^ 0x8));
+        } else {
+            setFlags(getFlags() | 0x8); // activate the field
+        }
         this.defaultSampleDuration = defaultSampleDuration;
     }
 
@@ -191,7 +195,11 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
     }
 
     public void setDefaultSampleSize(long defaultSampleSize) {
-        setFlags(getFlags() | 0x10); // activate the field
+        if (defaultSampleSize == -1) {
+            setFlags(getFlags() & (Integer.MAX_VALUE ^ 0x10));
+        } else {
+            setFlags(getFlags() | 0x10); // activate the field
+        }
         this.defaultSampleSize = defaultSampleSize;
     }
 
@@ -200,7 +208,11 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
     }
 
     public void setDefaultSampleFlags(SampleFlags defaultSampleFlags) {
-        setFlags(getFlags() | 0x20); // activate the field
+        if (defaultSampleFlags == null) {
+            setFlags(getFlags() & (Integer.MAX_VALUE ^ 0x20));
+        } else {
+            setFlags(getFlags() | 0x20); // activate the field
+        }
         this.defaultSampleFlags = defaultSampleFlags;
     }
 
@@ -209,7 +221,11 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
     }
 
     public void setDurationIsEmpty(boolean durationIsEmpty) {
-        setFlags(getFlags() | 0x10000); // activate the field
+        if (!durationIsEmpty) {
+            setFlags(getFlags() & (Integer.MAX_VALUE ^ 0x10000));
+        } else {
+            setFlags(getFlags() | 0x10000); // activate the field
+        }
         this.durationIsEmpty = durationIsEmpty;
     }
 
@@ -218,7 +234,11 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
     }
 
     public void setDefaultBaseIsMoof(boolean defaultBaseIsMoof) {
-        setFlags(getFlags() | 0x20000); // activate the field
+        if (!defaultBaseIsMoof) {
+            setFlags(getFlags() & (Integer.MAX_VALUE ^ 0x20000));
+        } else {
+            setFlags(getFlags() | 0x20000); // activate the field
+        }
         this.defaultBaseIsMoof = defaultBaseIsMoof;
     }
 
